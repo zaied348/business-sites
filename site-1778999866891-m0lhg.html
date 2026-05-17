@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>undefined</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #1f2937; }
+    :root { --primary: #1d4ed8; --secondary: #1e3a8a; --accent: #dbeafe; }
+
+    /* NAV */
+    nav { background: white; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+    nav .logo { font-size: 20px; font-weight: 700; color: var(--primary); }
+    nav a { color: #6b7280; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 32px; }
+    nav a:hover { color: var(--primary); }
+    nav .nav-cta { background: var(--primary); color: white !important; padding: 10px 24px; border-radius: 8px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%); }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); border-radius: 50px; padding: 8px 20px; font-size: 14px; font-weight: 500; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+    .hero p { font-size: 18px; opacity: 0.85; max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: white; color: var(--primary); padding: 16px 36px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.5); color: white; padding: 16px 36px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 16px; transition: all 0.2s; display: inline-block; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* STATS */
+    .stats { background: white; padding: 60px 40px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; border-bottom: 1px solid #f3f4f6; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 40px; font-weight: 800; color: var(--primary); }
+    .stat-label { font-size: 14px; color: #6b7280; margin-top: 4px; font-weight: 500; }
+
+    /* SERVICES */
+    .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+    .section-tag { color: var(--primary); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: #111827; margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: #6b7280; max-width: 600px; line-height: 1.7; margin-bottom: 56px; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .service-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #f3f4f6; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+    .service-icon { width: 52px; height: 52px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+    .service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #111827; }
+    .service-card p { font-size: 15px; color: #6b7280; line-height: 1.6; }
+
+    /* WHY US */
+    .why-section { background: #dbeafe; padding: 80px 40px; }
+    .why-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .why-list { list-style: none; margin-top: 32px; }
+    .why-list li { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .why-check { width: 28px; height: 28px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .why-list h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: #111827; }
+    .why-list p { font-size: 14px; color: #6b7280; line-height: 1.5; }
+    .why-visual { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+    .why-emoji { font-size: 80px; margin-bottom: 20px; }
+    .why-visual h3 { font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+    .why-visual p { color: #6b7280; font-size: 15px; }
+
+    /* CONTACT */
+    .contact-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 80px 40px; text-align: center; color: white; }
+    .contact-section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin-bottom: 16px; }
+    .contact-section p { font-size: 17px; opacity: 0.85; margin-bottom: 48px; }
+    .contact-cards { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+    .contact-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.25); border-radius: 16px; padding: 28px 36px; min-width: 200px; }
+    .contact-card .c-icon { font-size: 28px; margin-bottom: 8px; }
+    .contact-card .c-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .contact-card .c-value { font-size: 16px; font-weight: 600; }
+
+    /* FOOTER */
+    footer { background: #111827; color: #9ca3af; text-align: center; padding: 24px; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      nav a { display: none; }
+      .stats { gap: 32px; }
+      .why-inner { grid-template-columns: 1fr; }
+      .hero { padding: 70px 24px; }
+      .section { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">⭐ undefined</div>
+  <div>
+    <a href="#services">Services</a>
+    <a href="#contact" class="nav-cta">Contact Us</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">⭐ Professional Services</div>
+  <h1>undefined</h1>
+  <p>Trusted local experts delivering high-quality professional services in your area. Book your appointment today.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-white">📞 Book Now</a>
+    <a href="#services" class="btn-outline">Our Services →</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction Rate</div></div>
+  <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Response Time</div></div>
+</div>
+
+<div id="services">
+  <div class="section">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">We provide comprehensive professional services tailored to meet your specific needs.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">⭐</div>
+        <h3>Premium Service</h3>
+        <p>Top-quality professional services delivered by experienced specialists with attention to detail.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Fast & Reliable</h3>
+        <p>Quick turnaround times without compromising on quality. We respect your time and deliver on schedule.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Fully Insured</h3>
+        <p>All our services are fully insured. Work with confidence knowing you're protected every step of the way.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <h3>Competitive Pricing</h3>
+        <p>Transparent, fair pricing with no hidden fees. Get the best value for your investment.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📍</div>
+        <h3>Local Experts</h3>
+        <p>Based in your community, we understand local needs and provide personalized solutions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Satisfaction Guaranteed</h3>
+        <p>Not happy? We'll make it right. Your satisfaction is our top priority, always.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="why-section">
+  <div class="why-inner">
+    <div>
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">The undefined Difference</h2>
+      <ul class="why-list">
+        <li>
+          <div class="why-check">✓</div>
+          <div><h4>Licensed & Certified</h4><p>All our professionals are fully certified and up-to-date with the latest standards.</p></div>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <div><h4>Modern Equipment</h4><p>We use the latest tools and technology to ensure the best possible results.</p></div>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <div><h4>Friendly & Professional</h4><p>Our team is known for being approachable, punctual, and genuinely caring.</p></div>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <div><h4>Free Consultation</h4><p>Not sure what you need? We offer free initial consultations with no obligation.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-emoji">⭐</div>
+      <h3>Professional Services</h3>
+      <p>Serving 52156 Monschau, Germany with pride</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <h2>Ready to Get Started?</h2>
+  <p>Contact us today and let's discuss how we can help you.</p>
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="c-icon">📞</div>
+      <div class="c-label">Call Us</div>
+      <div class="c-value">+49 2472 5155</div>
+    </div>
+    <div class="contact-card">
+      <div class="c-icon">📍</div>
+      <div class="c-label">Find Us</div>
+      <div class="c-value">Laufenstraße 47, 52156 Monschau</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 undefined — All Rights Reserved
+</footer>
+
+</body>
+</html>
